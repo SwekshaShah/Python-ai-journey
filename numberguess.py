@@ -1,20 +1,21 @@
 import random
 number= random.randint(1,100)
 attempt=0
-max_attempt=10
+max_attempt=7
 while attempt<max_attempt:
   guess= int(input("Enter a number:"))
   attempt+=1
   if guess==number:
-    print("Correct answer! you won")
-    print("Attempt",attempt)
+    print("Correct answer! you won congratulation")
+    print(f"Attempt : {attempt}")
     break
   elif guess>number:
-    print("You are High")
+    print(f"incorrect you have {max_attempt-attempt} left")
+    print("You are too High")
   else:
-    print("You are low")
+    print(f"incorrect you have {max_attempt-attempt} left")
+    print("You are too low")
 
 if guess!=number:
-  print("Game Over!")
-  print("The number is:",number)6
-  
+    print("Game Over!")
+    print("The number is:",number)
