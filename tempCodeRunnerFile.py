@@ -18,7 +18,3 @@ while attempt<max_attempt:
   else:
     print(f"incorrect you have {max_attempt-attempt} left")
     print("You are too low")
-
-#if guess!=number:
- #   print("Game Over!")
-  #  print("The number is:",number)
