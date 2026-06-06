@@ -1,0 +1,1 @@
+#Nested lists: build a 3×3 matrix. Write functions to print it as a formatted grid, calculate the transpose, and add two matrices element by element. No NumPy — do it manually. This bridges directly to Week 2.
