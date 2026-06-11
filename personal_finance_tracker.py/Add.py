@@ -1,4 +1,5 @@
 transactions=[]
+"""
 def add_transaction(description, amount,category):
     transaction = {
         'description': description,
@@ -44,7 +45,38 @@ def category_summary():
   for i, total in sorted(summary.items()):
     print(f"  {i:<20} {total:>8.2f}")
 category_summary()
+"""
 
+"""
+def filter_transactions(**filter):
+    results=transactions.copy()
+    if 'category' in filter:
+        results=[t for t in results if t['category']==filter['category']]
+    print(filter['catergory'])
+filter_transactions(category='food')
+"""
 
-
+transactions = [
+    {'description': "momo", 'amount': 150, 'category': "food"},
+    {'description': "coffee", 'amount': 300, 'category': "drink"},
+    {'description': "kitkat", 'amount': 50, 'category': "chocolate"},
+    {'description': "cake", 'amount': 100, 'category': "food"},
+    {'description': "pizza", 'amount': 450, 'category': "food"},
+    {'description': "burger", 'amount': 250, 'category': "food"},
+    """{'description': "coke", 'amount': 80, 'category': "drink"},
+    {'description': "tea", 'amount': 40, 'category': "drink"},
+    {'description': "ice cream", 'amount': 120, 'category': "dessert"},
+    {'description': "chips", 'amount': 60, 'category': "snack"},
+    {'description': "donut", 'amount': 90, 'category': "dessert"},
+    {'description': "sandwich", 'amount': 180, 'category': "food"},
+    {'description': "juice", 'amount': 110, 'category': "drink"},
+    {'description': "chocolate bar", 'amount': 70, 'category': "chocolate"},
+    {'description': "fries", 'amount': 130, 'category': "snack"}"""
+]
+def get_balance():
+    balance=0
+    for t in transactions:
+        balance+=t['amount']
+        return balance
+get_balance()
 
