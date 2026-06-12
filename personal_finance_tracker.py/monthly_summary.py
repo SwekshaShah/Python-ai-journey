@@ -1,3 +1,4 @@
+transactions=[]
 def get_monthly_summary():
     if not transactions:
         return
