@@ -33,12 +33,12 @@ def get_by_category(category):
     if t['category'].lower()==category.lower():
       print(f"{t['name']:<20} {t['price']:>8.2f}")
 
-def get_balance():
-    balance=0
+def get_total_cost():
+    total_cost=0
     for t in restaurants:
-      balance+=t['price']
-    return balance
-get_balance()
+      total_cost+=t['price']
+    return
+get_total_cost()
 
 def filter_menu(**menu):
   results=restaurants.copy()
@@ -66,7 +66,7 @@ def menu():
       category=input("enter category")
       get_by_category(category)
     elif choice=='4':
-      get_balance()
+      get_total_cost()
     elif choice=='5':
       filter1=input("enter category to filter")
       filter_menu(filter1=filter1)
