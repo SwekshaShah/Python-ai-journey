@@ -1,8 +1,10 @@
 def counter_factory():
     count = 0
     def counter():
-        nonlocal count
-        count += 1
+        while True:
+            nonlocal count
+            count += 1
+            print(count)
         return count
     return counter
 
