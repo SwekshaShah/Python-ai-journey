@@ -1,27 +1,15 @@
-import json
-
 transactions = [{'description': "momo", 'amount': 150, 'category': "food"},
     {'description': "coffee", 'amount': 300, 'category': "drink"},
     {'description': "kitkat", 'amount': 50, 'category': "chocolate"},
     {'description': "cake", 'amount': 100, 'category': "food"},
     {'description': "pizza", 'amount': 450, 'category': "food"},
     {'description': "burger", 'amount': 250, 'category': "food"}]
-file_name = "transactions.json"
+    
+with open("finance.txt", 'x') as file:
 
-
-def save_transactions():
-    with open(file_name, 'w') as file:
-        json.dump(transactions, file, indent=4)
-
-
-def load_transactions():
-    global transactions
-    try:
-        with open(file_name, 'r') as file:
-            transactions = json.load(file)
-    except FileNotFoundError:
-        transactions = []
-
+with open("finance.txt", 'w') as file:
+    for t in transactions:
+        file.write(f"{t['description']} {t['amount']}\n")
 
 def add_transaction(description, amount, category):
     transaction = {
@@ -31,8 +19,9 @@ def add_transaction(description, amount, category):
     }
 
     transactions.append(transaction)
-    save_transactions()
-    print(f"Added: {description} {amount}")
+
+    with open("finance.txt","a") as file:
+        file.write(f"{description} {amount}\n")
 
 
 def view_transactions():
@@ -50,6 +39,9 @@ def view_transactions():
 
     print("-" * 40)
     print(f"Total: {total:.2f}")
+    with open("finance.txt","r") as file:
+        print(file.read())
+
 
 
 def get_balance():
@@ -59,7 +51,8 @@ def get_balance():
         balance += t['amount']
 
     return balance
-
+    with open("finance.txt","r") as file:
+        print(file.read())
 
 
 def get_by_category(category):
@@ -74,7 +67,8 @@ def get_by_category(category):
 
     if not found:
         print("No transactions found.")
-
+    with open("finance.txt","r") as file:
+        print(file.read())
 
 def category_summary():
     summary = {}
@@ -92,7 +86,8 @@ def category_summary():
     for category, total in sorted(summary.items()):
         print(f"{category:<20} {total:>8.2f}")
 
-
+    with open("finance.txt","r") as file:
+        print(file.read())
 def filter_transactions(**filter):
     results = transactions.copy()
 
@@ -121,7 +116,8 @@ def filter_transactions(**filter):
 
     print("_" * 47)
 
-
+    with open("finance.txt","r") as file:
+        print(file.read())
 def get_monthly_summary():
     if not transactions:
         print("No transactions yet.")
@@ -145,7 +141,8 @@ def get_monthly_summary():
     for cat, amount in by_cat.items():
         print(cat, ":", amount)
 
-load_transactions()
+    with open("finance.txt","r") as file:
+        print(file.read())
 
 
 def menu():
