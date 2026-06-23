@@ -37,9 +37,9 @@ class FinanceTracker:
         self.transactions = []
 
     def add(self, description, amount, category):
-        t = Transaction(description, amount, category)
-        self.transactions.append(t)
-        return t
+      t = Transaction(description, amount, category)
+      self.transactions.append(t)
+      return t
 
     def get_balance(self):
         return sum(t.amount for t in self.transactions)
@@ -111,28 +111,59 @@ class Admin(User):
         tracker.write_file()
         print(f"{self.name} deleted {count} transactions.")
 
-
 def main():
-    print("=== Personal Finance Tracker ===")
+  tracker=FinanceTracker()
+  tracker.load()
+  name=input("enter your name:")
+  user=User(name)
 
-    user = User("Sweety")
-    admin = Admin("Sara")
+  while True:
+    print("------Finance Tracker-------:")
+    print("1. Add Transaction")
+    print("2. View all transactions")
+    print("3. View balance")
+    print("4. View transactions by category")
+    print("5. Show summary")
+    print("6. Save transactions")
+    print("7. Exit")
 
-    print(user.greet())
-    print(admin.greet())
+    choice=int(input("Enter your choice(1 to 7):"))
+    if choice==1:
+      description=input("Enter description:")
+      amount=float(input("Enter amount:"))
+      category=input("Enter category:")
+      tracker.add(description,amount,category)
+      print("Transaction added")
+    elif choice==2:
+      if not tracker.transactions:
+        print("No transactions found")
+      else:
+        for t in tracker.transactions:
+          print(t)
+    elif choice==3:
+      balance=tracker.get_balance()
+      print(f"Total Balance: Rs{balance:.2f}")
+    elif choice==4:
+      category=input("Enter category:")
+      transactions=tracker.get_category(category)
+      if not transactions:
+        print("No transactions found")
+      else:
+        for t in transactions:
+          print(t)
+    elif choice==5:
+      tracker.summary()
+    elif choice==6:
+      tracker.write_file()
+      print("Transactions saved")
+    elif choice==7:
+      print("Thank You")
+      break
+    else:
+      print("Invalid choice")
 
-    tracker = FinanceTracker()
-    tracker.load()
-
-    tracker.add("Groceries", 45.50, "food")
-    tracker.add("Gas", 60.00, "transport")
-
-    tracker.summary()
-
-    tracker.write_file()
-
-    print("Users:", User.user_count)
+if __name__=="__main__":
+  main()  
 
 
-if __name__ == "__main__":
-    main()
+
